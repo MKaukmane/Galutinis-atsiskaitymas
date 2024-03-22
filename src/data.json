@@ -1,0 +1,70 @@
+{
+    "questions": [
+        {
+            "id": "0",
+            "userId": "0",
+            "topic": "Namai",
+            "question": "Kur pirkti namams sofą?",
+            "likes": "0",
+            "edited": "false",
+            "answers": [
+                {
+                    "id": "0",
+                    "questionId": "0",
+                    "userId": "1",
+                    "answer": "Ikea",
+                    "likes": "0",
+                    "edited": "false"
+                },
+                {
+                    "id": "1",
+                    "questionId": "0",
+                    "userId": "2",
+                    "answer": "Gintaro baldai",
+                    "likes": "0",
+                    "edited": "false"
+                }
+            ]
+        },
+        {
+            "id": "1",
+            "userId": "1",
+            "topic": "Maistas",
+            "question": "Kur geriausiai pavalgyti Kaune?",
+            "likes": "0",
+            "edited": "false",
+            "answers": [
+                {
+                    "id": "0",
+                    "questionId": "1",
+                    "userId": "0",
+                    "answer": "McDonalds",
+                    "likes": "0",
+                    "edited": "false"
+                },
+                {
+                    "id": "1",
+                    "questionId": "1",
+                    "userId": "2",
+                    "answer": "Čili pica",
+                    "likes": "0",
+                    "edited": "false"
+                }
+            ]
+        }
+    ],
+    "users": [
+        {
+            "id": "0",
+            "name": "Jonas",
+            "email": "jonaitis@gmail.com",
+            "password": "123456"
+        },
+        {
+            "id": "1",
+            "name": "Petras",
+            "email": "petraitis@gmail.com",
+            "password": "abcdef"
+        }
+    ]
+}
