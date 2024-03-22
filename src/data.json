@@ -3,8 +3,8 @@
         {
             "id": "0",
             "userId": "0",
-            "topic": "Namai",
-            "question": "Kur pirkti namams sofą?",
+            "topic": "House",
+            "question": "Best place to buy sofa?",
             "likes": "0",
             "edited": "false",
             "answers": [
@@ -29,8 +29,8 @@
         {
             "id": "1",
             "userId": "1",
-            "topic": "Maistas",
-            "question": "Kur geriausiai pavalgyti Kaune?",
+            "topic": "Food",
+            "question": "Best place to eat in Kaunas?",
             "likes": "0",
             "edited": "false",
             "answers": [
@@ -46,7 +46,7 @@
                     "id": "1",
                     "questionId": "1",
                     "userId": "2",
-                    "answer": "Čili pica",
+                    "answer": "Cili pica",
                     "likes": "0",
                     "edited": "false"
                 }
