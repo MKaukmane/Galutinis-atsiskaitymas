@@ -16,6 +16,9 @@ const StyledHeader = styled.header`
             color: black;
             >img{
                 height: 50px;
+                &:hover{
+                    filter: invert(0.5);
+                }
             }
         }
         >a:hover{
@@ -46,13 +49,12 @@ const StyledHeader = styled.header`
 const Header = () => {
     return ( 
         <StyledHeader>
+            <div><NavLink to='/addNew'>New question</NavLink></div>
             <div>
                 <Link to="/">
                     <img src="https://iconape.com/wp-content/files/rl/183006/svg/183006.svg" alt="forum logo"/>
                 </Link>
             </div>
-            <div><NavLink to='/'>Home</NavLink></div>
-            <div><NavLink to='/addNew'>New question</NavLink></div>
             <nav>
                 <ul>
                     <li>

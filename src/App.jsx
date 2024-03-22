@@ -4,6 +4,7 @@ import Header from './components/UI/Header';
 import Home from './components/pages/Home';
 import Register from './components/pages/Register';
 import Login from './components/pages/Login';
+import Footer from './components/UI/Footer';
 
 const App = () => {
 
@@ -22,6 +23,7 @@ const App = () => {
           </Route>
         </Routes>
       </main>
+      <Footer />
     </>
   );
 }
