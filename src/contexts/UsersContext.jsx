@@ -3,13 +3,23 @@ import { useReducer, createContext, useState, useEffect } from "react";
 const UsersContext = createContext();
 
 export const UsersActionTypes = {
-    getAll: 'fetchAll'
+    getAll: 'fetch all data',
+    addNew: 'addNew user to the data'
 }
 
 const reducer = (state, action) => {
     switch(action.type){
         case UsersActionTypes.getAll:
             return action.data;
+        case UsersActionTypes.addNew:
+            fetch(`ttp://localhost:8080/users` , {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(action.data)
+        });
+        return [...state, action.data];
         default:
             console.error(`Action type not found ${action.type}`);
             return state;
