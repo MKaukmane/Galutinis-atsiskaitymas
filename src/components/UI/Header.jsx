@@ -16,20 +16,15 @@ const StyledHeader = styled.header`
             color: black;
             >img{
                 height: 50px;
-                &:hover{
-                    filter: invert(0.5);
-                }
             }
         }
         >a:hover{
             text-decoration: underline;
-            color: #e276fd
+            color: #e276fd;
         }
     }
     >nav{
         >ul{
-            display: flex;
-            gap: 10px;
             list-style-type: none;
             >li{
                 >a{

@@ -1,12 +1,17 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useContext } from 'react';
+import UsersContext from './contexts/UsersContext';
 import Header from './components/UI/Header';
 import Home from './components/pages/Home';
 import Register from './components/pages/Register';
 import Login from './components/pages/Login';
 import Footer from './components/UI/Footer';
+import NewQuestions from './components/pages/NewQuestions';
 
 const App = () => {
+
+  const { loginUser } = useContext(UsersContext);
 
   return (
     <>
@@ -15,7 +20,9 @@ const App = () => {
         <Routes>
           <Route index element={<Home />}/>
           <Route path='/'>
-
+          <Route path='addNew' element={
+            loginUser ? <NewQuestions /> : <Navigate to='/user/login' />
+          }/>
           </Route>
           <Route path='/user'>
             <Route path='register' element={<Register />} />
