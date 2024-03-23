@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import UsersContext from "../../contexts/UsersContext";
+import { useContext } from "react";
 
 const StyledHeader = styled.header`
     display: flex;
@@ -38,10 +40,27 @@ const StyledHeader = styled.header`
                 }
             }
         }
+        >div{
+            display: flex;
+            gap: 10px;
+            >p{
+                >a{
+                    text-decoration: none;
+                    color: #e276fd;
+                }
+            }
+            >button{
+                border: none;
+            }
+        }
     }
 `;
 
 const Header = () => {
+
+    const navigate = useNavigate();
+    const { loginUser, setLoginUser } = useContext(UsersContext);
+
     return ( 
         <StyledHeader>
             <div><NavLink to='/addNew'>New question</NavLink></div>
@@ -51,6 +70,19 @@ const Header = () => {
                 </Link>
             </div>
             <nav>
+                {
+                    loginUser ?
+                <div>
+                    <p>
+                        <Link to={`/user/${loginUser.userName}`}>{loginUser.userName}</Link>
+                    </p>
+                    <button 
+                    onClick={() => {
+                        setLoginUser(null);
+                        navigate('/');
+                    }}
+                    ><i className="bi bi-box-arrow-right"></i></button>
+                </div>:
                 <ul>
                     <li>
                         <NavLink to='/user/login'>Login</NavLink>
@@ -59,6 +91,7 @@ const Header = () => {
                         <NavLink to='/user/register'>Register</NavLink>
                     </li>
                 </ul>
+                }
             </nav>
         </StyledHeader>
      );

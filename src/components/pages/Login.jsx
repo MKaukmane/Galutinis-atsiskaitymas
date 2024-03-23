@@ -1,9 +1,9 @@
 import styled from "styled-components";
+import { useContext, useState } from "react";
+import UsersContext from "../../contexts/UsersContext";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
 import * as Yup from 'yup';
-import UsersContext from "../../contexts/UsersContext";
 
 const StyledSection = styled.section`
     margin-left: 50px;
@@ -62,6 +62,7 @@ const Login = () => {
                 setLoginUser(loginUser);
                 navigate('/');
             }
+
         },
         validationSchema: Yup.object({
             userName: Yup.string()
@@ -75,16 +76,16 @@ const Login = () => {
     return ( 
         <StyledSection>
             <h1>Login</h1>
-            <form>
+            <form onSubmit={formik.handleSubmit}> 
                 <div>
                     <label htmlFor="userName">Username:</label>
                     <input 
-                    type="text" 
-                    id="userName" name="userName"
-                    placeholder="Enter your user name..."
-                    value={formik.values.userName}
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
+                        type="text" 
+                        id="userName" name="userName"
+                        placeholder="Enter your user name..."
+                        value={formik.values.userName}
+                        onBlur={formik.handleBlur}
+                        onChange={formik.handleChange}
                     />
                     {
                         formik.touched.userName && formik.errors.userName && 
