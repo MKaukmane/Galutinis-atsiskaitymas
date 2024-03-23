@@ -19,14 +19,13 @@ const App = () => {
       <main>
         <Routes>
           <Route index element={<Home />}/>
-          <Route path='/'>
           <Route path='addNew' element={
-            loginUser ? <NewQuestions /> : <Navigate to='/user/login' />
+              loginUser ? <NewQuestions /> : <Navigate to='/user/login' />
           }/>
-          </Route>
           <Route path='/user'>
             <Route path='register' element={<Register />} />
             <Route path='login' element={<Login />} />
+            
           </Route>
         </Routes>
       </main>

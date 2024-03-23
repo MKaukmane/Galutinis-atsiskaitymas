@@ -29,7 +29,7 @@ const reducer = (state, action) => {
 const UsersProvider = ({children}) => {
 
     const [users, setUsers] = useReducer(reducer, []);
-    const [loginUser, setLoginUser] = useState(null);
+    const [loginUser, setLoginUser] = useState(false);
 
     useEffect(() => {
         fetch('http://localhost:8080/users')
