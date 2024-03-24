@@ -57,6 +57,12 @@
       "userId": "7d13",
       "question": "Where is best sushi in Klaipeda?",
       "topic": "food"
+    },
+    {
+      "id": "e759cac8-18fc-40c1-bb5d-08786c6cc55b",
+      "userId": "1",
+      "topic": "Car",
+      "question": "Best car for family?"
     }
   ],
   "users": [
