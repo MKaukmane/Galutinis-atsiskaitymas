@@ -29,9 +29,6 @@ const StyledSection = styled.section`
         >h4{
             margin-top: 0;
         }
-        >h2{
-            margin-bottom: 0;
-        }
         >div{
             display: flex;
             justify-content: space-between;
@@ -81,25 +78,15 @@ const OneQuestionPage = () => {
     });
 
     return ( 
-        <>
+        <StyledSection>
         {
             questions.length &&
             <div>
                 <div>
                 {
                     loginUser.id === question.userId && 
-                    <button onClick={() => {
-                        setQuestions({
-                            type: QuestionsActionTypes.edit,
-                            id: question.id,
-                            data: {
-                                userId: question.userId,
-                                topic: question.topic,
-                                question: question.question
-                            }
-                        });
-                        navigate(`/${question.id}/edit`);
-                    }}><i className="bi bi-pencil"></i></button>
+                    <button onClick={() => 
+                        navigate(`/${question.id}/edit`)}><i className="bi bi-pencil"></i></button>
                 }
                 {
                     loginUser.id === question.userId && 
@@ -145,7 +132,7 @@ const OneQuestionPage = () => {
                 }
             </div> 
         }
-        </>
+        </StyledSection>
      );
 }
  
