@@ -7,10 +7,21 @@ import { Link } from "react-router-dom";
 
 const StyledDiv = styled.div`
     border: 1px solid #ab5fc0;
+    border-radius: 5px;
     margin: 10px 0;
+    padding-bottom: 15px;
+    >a{
+        text-decoration: none;
+        color: black;
+    }
+    >a:hover{
+        text-decoration: underline;
+        color: #e276fd;
+    }
+
 `;
 
-const OneQuestion = ({data}) => {
+const OneQuestion = ({data, location}) => {
 
     const { setQuestions } = useContext(QuestionsContext);
     const { loginUser } = useContext(UsersContext);
@@ -19,7 +30,9 @@ const OneQuestion = ({data}) => {
         <StyledDiv>
             <h4>{data.topic}</h4>
             <h2>{data.question}</h2>
+            <Link to={`/${data.id}`}>More info...</Link>
             {
+                location.pathname === '/home' &&
                 loginUser.id === data.userId && 
                 <button onClick={() => {
                     setQuestions({
@@ -29,6 +42,7 @@ const OneQuestion = ({data}) => {
                 }}><i className="bi bi-trash"></i></button>
             }
             {
+                location.pathname === '/home' &&
                 loginUser.id === data.userId && 
                 <button onClick={() => {
                     setQuestions({

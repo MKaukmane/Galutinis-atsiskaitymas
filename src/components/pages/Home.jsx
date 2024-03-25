@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useContext } from "react";
 import QuestionsContext from "../../contexts/QuestionsContext";
 import OneQuestion from "../UI/OneQuestion";
+import { useLocation } from "react-router-dom";
 
 const StyledSection = styled.section`
     text-align: center;
@@ -15,6 +16,7 @@ const StyledSection = styled.section`
 const Home = () => {
 
     const {questions} = useContext(QuestionsContext);
+    const location = useLocation();
 
     return ( 
         <StyledSection>
@@ -25,6 +27,7 @@ const Home = () => {
                         <OneQuestion 
                         key={question.id} 
                         data={question} 
+                        location={location}
                         />
                     )
                 }

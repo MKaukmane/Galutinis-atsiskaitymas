@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import * as Yup from 'yup';
 import UsersContext from "../../contexts/UsersContext";
@@ -8,8 +8,17 @@ import { UsersActionTypes } from "../../contexts/UsersContext";
 import bcrypt from 'bcryptjs';
 import { v4 as uuid } from 'uuid';
 
-const StyledRegister = styled.div` 
-    margin-left: 50px;
+const StyledRegister = styled.div`
+    margin-left: 50px; 
+    >button{
+        border: none;
+        background-color: transparent;
+        margin-top: 20px;
+        font-size: 20px;
+        >a >i{
+            color: black;
+        }
+    }
     >h1{
         font-size: 1.8rem;
     }
@@ -100,6 +109,7 @@ const Register = () => {
 
     return ( 
         <StyledRegister>
+            <button><Link to="/"><i className="bi bi-arrow-left"></i></Link></button>
             <h1>Register</h1>
             <form onSubmit={formik.handleSubmit}>
                 <div>
