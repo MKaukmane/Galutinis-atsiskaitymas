@@ -9,6 +9,7 @@ import Login from './components/pages/Login';
 import Footer from './components/UI/Footer';
 import NewQuestions from './components/pages/NewQuestions';
 import EditQuestion from './components/pages/EditQuestion';
+import UserPage from './components/pages/UserPage';
 
 const App = () => {
 
@@ -29,7 +30,9 @@ const App = () => {
           <Route path='/user'>
             <Route path='register' element={<Register />} />
             <Route path='login' element={<Login />} />
-            
+            <Route path=':userName' element={
+              loginUser ? <UserPage /> : <Navigate to='/user/login' />
+              } />
           </Route>
         </Routes>
       </main>
