@@ -4,6 +4,7 @@ import UsersContext from "../../contexts/UsersContext";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
+import bcrypt from 'bcryptjs';
 
 const StyledSection = styled.section`
     margin-left: 50px;
@@ -54,7 +55,7 @@ const Login = () => {
             password: ""
         },
         onSubmit: (values) => {
-            const loginUser = users.find(user => user.userName === values.userName && user.password === values.password);
+            const loginUser = users.find(user => user.userName === values.userName &&  bcrypt.compareSync(values.password, user.password));
 
             if(loginUser === undefined){
                 setWrongInfo(true);
@@ -95,12 +96,12 @@ const Login = () => {
                 <div>
                     <label htmlFor="password">Password:</label>
                     <input 
-                    type="password" 
-                    id="password" name="password"
-                    placeholder="Enter your password..."
-                    value={formik.values.password}
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange} 
+                        type="password" 
+                        id="password" name="password"
+                        placeholder="Enter your password..."
+                        value={formik.values.password}
+                        onBlur={formik.handleBlur}
+                        onChange={formik.handleChange} 
                     />
                     {
                         formik.touched.password && formik.errors.password && 
