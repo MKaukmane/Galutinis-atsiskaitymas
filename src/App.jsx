@@ -10,6 +10,7 @@ import Footer from './components/UI/Footer';
 import NewQuestions from './components/pages/NewQuestions';
 import EditQuestion from './components/pages/EditQuestion';
 import UserPage from './components/pages/UserPage';
+import OneQuestionPage from './components/pages/OneQuestionPage';
 
 const App = () => {
 
@@ -23,7 +24,8 @@ const App = () => {
           <Route index element={<Home />}/>
           <Route path='addNew' element={
               loginUser ? <NewQuestions /> : <Navigate to='/user/login' />
-          }/>
+            }/>
+          <Route path=':id' element={<OneQuestionPage />} />
           <Route path=':id/edit' element={
               loginUser ? <EditQuestion /> : <Navigate to='/user/login' />
           } />

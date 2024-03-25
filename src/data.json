@@ -33,9 +33,9 @@
       "id": "1"
     },
     {
+      "userId": "7d13",
       "topic": "food",
       "question": "Where is best sushi in Klaipeda?",
-      "userId": "7d13",
       "id": "30a53a8a-5188-47b3-8a49-8ed338328ca4"
     },
     {
@@ -51,21 +51,21 @@
       "userName": "Jonas",
       "email": "jonaitis@gmail.com",
       "password": "$2a$10$IzdH/VR7OWOGRhy4iU8dROR38T.lDN/zk4Jc8W9vSzV8OVVqJCmy.",
-      "passwordNoHash" : "123456"
+      "passwordNoHash": "123456"
     },
     {
       "id": "1",
       "userName": "Petras",
       "email": "petraitis@gmail.com",
       "password": "$2a$10$gnqD3xzW.vUq.coFh2lze.hIuMDSd2ShEJissbV3FKXjmKDX/X2O2",
-      "passwordNoHash" : "abcdef"
+      "passwordNoHash": "abcdef"
     },
     {
       "id": "7d13",
       "userName": "Jolanta",
       "email": "jolantele@gmail.com",
       "password": "$2a$10$IAEtGegYlZQ0B.vx0QZRGuu2bUjBSApVu0//d1oDmTxShVIIT36xS",
-      "passwordNoHash" : "123456"
+      "passwordNoHash": "123456"
     }
   ]
 }
