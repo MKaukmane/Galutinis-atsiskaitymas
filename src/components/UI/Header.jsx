@@ -78,7 +78,7 @@ const Header = () => {
                     </p>
                     <button 
                     onClick={() => {
-                        setLoginUser(null);
+                        setLoginUser(false);
                         navigate('/');
                     }}
                     ><i className="bi bi-box-arrow-right"></i></button>

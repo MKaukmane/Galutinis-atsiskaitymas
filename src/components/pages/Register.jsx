@@ -5,6 +5,8 @@ import { useContext, useState } from "react";
 import * as Yup from 'yup';
 import UsersContext from "../../contexts/UsersContext";
 import { UsersActionTypes } from "../../contexts/UsersContext";
+import bcrypt from 'bcryptjs';
+import { v4 as uuid } from 'uuid';
 
 const StyledRegister = styled.div` 
     margin-left: 50px;
@@ -57,26 +59,22 @@ const Register = () => {
             passwordRepeat: ""
         },
         onSubmit: (values) => {
-            const sameName = users.find(user => user.userName === values.userName);
-            if(sameName === undefined){
-                fetch('http://localhost:8080/users', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(values)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    setUsers({
-                        type: UsersActionTypes.getAll,
-                        data: [...users, data]
-                    });
-                    setLoginUser(data);
-                    navigate('/home');
-                })
+            if(users.find(user => user.userName === values.userName)){
+               setSameNameError(true);
             } else {
-                setSameNameError(true);
+                const newUser = {
+                    id: uuid(),
+                    userName: values.userName,
+                    email: values.email,
+                    password: bcrypt.hashSync(values.password, 10),
+                    passwordNoHash: values.password
+                };
+                setUsers({
+                    type: UsersActionTypes.addNew,
+                    data: newUser
+                });
+                setLoginUser(newUser);
+                navigate('/');
             }
         },
         validationSchema: Yup.object({

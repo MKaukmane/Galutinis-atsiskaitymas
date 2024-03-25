@@ -5,7 +5,8 @@ const QuestionsContext = createContext();
 export const QuestionsActionTypes = {
     getAll: 'fetch all data',
     addNew: 'addNew question to the data',
-    delete: 'delete one specific question'
+    delete: 'delete one specific question',
+    edit: 'edit one specific question'
 } 
 
 const reducer = (state, action) => {
@@ -26,6 +27,15 @@ const reducer = (state, action) => {
                 method: 'DELETE'
             });
             return state.filter(item => item.id !== action.id);
+        case QuestionsActionTypes.edit:
+            fetch(`http://localhost:8080/questions/${action.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(action.data)
+            });
+            return state.map(item => item.id === action.id ? action.data : item);
         default:
             console.error(`Action type not found ${action.type}`);
             return state;
