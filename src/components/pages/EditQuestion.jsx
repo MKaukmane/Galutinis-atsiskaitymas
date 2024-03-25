@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useParams, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import QuestionsContext from "../../contexts/QuestionsContext";
+import { QuestionsActionTypes } from "../../contexts/QuestionsContext";
 import * as yup from 'yup';
 import { useFormik } from "formik";
 
@@ -63,18 +64,19 @@ const EditQuestion = () => {
 
     const formik = useFormik({
         initialValues: initialValues,
+        enableReinitialize: true,
         onSubmit: (values) =>{
-            const editQuestion = questions.map(question => {
-                if(question.id === id){
-                    return {
-                        ...question,
-                        topic: values.topic,
-                        question: values.question
-                    }
+            const editQuestion = questions.find(question => question.id === id);
+
+            setQuestions({
+                type: QuestionsActionTypes.edit,
+                id: editQuestion.id,
+                data: {
+                    ...editQuestion,
+                    topic: values.topic,
+                    question: values.question
                 }
-                return {...question};
             });
-            setQuestions(editQuestion);
             navigate('/');
         },
         validationSchema: yup.object({
