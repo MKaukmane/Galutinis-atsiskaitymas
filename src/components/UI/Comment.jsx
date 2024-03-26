@@ -17,7 +17,7 @@ const Comment = ({comment, QuestionId}) => {
                     <p>Comment by: {author.userName}</p>
                     <p>{comment.text}</p>
                     {
-                        loginUser.id === comment.authorId && 
+                        loginUser.id === comment.userId && 
                         <button 
                             onClick={() => setQuestions({
                                 type: QuestionsActionTypes.deleteComment,

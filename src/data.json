@@ -4,7 +4,21 @@
       "userId": "0",
       "topic": "Food",
       "question": "Best place to eat in Kaunas?",
-      "id": "1"
+      "id": "1",
+      "comments": [
+        {
+          "id": "0",
+          "questionId": "1",
+          "userId": "1",
+          "comment": "I like to eat in 'Viva la vita'"
+        },
+        {
+          "id": "1",
+          "questionId": "1",
+          "userId": "0",
+          "comment": "I like to eat in 'Viva la vita' too"
+        }
+      ]
     },
     {
       "userId": "0",

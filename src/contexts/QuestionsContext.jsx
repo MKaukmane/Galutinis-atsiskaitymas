@@ -64,7 +64,7 @@ const reducer = (state, action) => {
                 ...questionToChange,
                 comments: questionToChange.comments.filter(comment => comment.id !== action.commentId)
             };
-            fetch(`http://localhost:8080/questions/${action.QuestionId}`, {
+            fetch(`http://localhost:8080/questions/${action.questionId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
