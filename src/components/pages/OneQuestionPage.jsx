@@ -29,7 +29,11 @@ const StyledSection = styled.section`
         >h4{
             margin-top: 0;
         }
-        >div{
+        >h2{
+            border-bottom: 1px dashed #ab5fc0;
+            padding-bottom: 10px;
+        }
+        >div:nth-child(1){
             display: flex;
             justify-content: space-between;
             >button{
@@ -39,6 +43,30 @@ const StyledSection = styled.section`
                     text-decoration: underline;
                     color: #e276fd;
                 }
+            }
+        }
+        >div:nth-child(2){
+            display: flex;
+            flex-direction: column;
+        }
+        >form{
+            display: flex;
+            justify-content: center;
+            >div{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                >textarea{
+                    width: 400px;
+                    height: 25px;
+                    border-radius: 5px 0 0 5px;
+                }
+            }
+            >button{
+                border-radius: 0 5px 5px 0;
+                border: 1px solid #ab5fc0;
+                background-color: #ab5fc0;
+                
             }
         }
     }
@@ -64,9 +92,10 @@ const OneQuestionPage = () => {
         }),
         onSubmit: (values) => {
             const newComment = {
-                text: values.text,
                 id: uuid(),
-                authorId: loginUser.id,
+                questionId: question.id,
+                userId: loginUser.id,
+                text: values.text
             }
             setQuestions({
                 type: QuestionsActionTypes.addComment,

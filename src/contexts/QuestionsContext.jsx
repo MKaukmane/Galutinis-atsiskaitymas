@@ -59,7 +59,7 @@ const reducer = (state, action) => {
                 }
             });
         case QuestionsActionTypes.deleteComment:
-            const questionToChange = state.find(item => item.id === action.QuestionId);
+            const questionToChange = state.find(item => item.id === action.questionId);
             const changedQuestion = {
                 ...questionToChange,
                 comments: questionToChange.comments.filter(comment => comment.id !== action.commentId)
@@ -72,7 +72,7 @@ const reducer = (state, action) => {
                 body: JSON.stringify(changedQuestion)
             });
             return state.map(item => {
-                if(item.id === action.QuestionId){
+                if(item.id === action.questionId){
                     return changedQuestion;
                 } else {
                     return item;

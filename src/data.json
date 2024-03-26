@@ -17,6 +17,12 @@
           "questionId": "1",
           "userId": "0",
           "text": "I like to eat in 'Viva la vita' too"
+        },
+        {
+          "id": "b2783cff-04de-465e-96d9-d3ebd260d609",
+          "questionId": "1",
+          "userId": "7d13",
+          "text": "Čili pica"
         }
       ]
     },
@@ -24,19 +30,49 @@
       "userId": "0",
       "topic": "Food",
       "question": "Where is best sushi in Klaipeda?",
-      "id": "2"
+      "id": "2",
+      "comments": [
+        {
+          "id": "ffde43bb-0fe5-48e3-90d6-2c5817a2529c",
+          "questionId": "2",
+          "userId": "0",
+          "text": "Express sushi"
+        },
+        {
+          "id": "960ef1e1-aa52-41da-b01e-c0e33859a71b",
+          "questionId": "2",
+          "userId": "0",
+          "text": "Sushi"
+        }
+      ]
     },
     {
       "userId": "0",
       "topic": "Car",
       "question": "Best car for family?",
-      "id": "3"
+      "id": "3",
+      "comments": [
+        {
+          "id": "49ecdaee-3907-4298-8f6b-d8447b0144dc",
+          "questionId": "3",
+          "userId": "7d13",
+          "text": "Passat"
+        }
+      ]
     },
     {
       "userId": "0",
       "topic": "House",
       "question": "Where to buy table for 6 people?",
-      "id": "4"
+      "id": "4",
+      "comments": [
+        {
+          "id": "88b01bdf-0dbb-4c4e-9458-63953e9ab48e",
+          "questionId": "4",
+          "userId": "7d13",
+          "text": "Ikea Vilniuje"
+        }
+      ]
     }
   ],
   "users": [
