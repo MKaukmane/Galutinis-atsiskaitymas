@@ -4,7 +4,7 @@ const UsersContext = createContext();
 
 export const UsersActionTypes = {
     getAll: 'fetch all data',
-    addNew: 'addNew user to the data'
+    addNew: 'addNew user to the data',
 }
 
 const reducer = (state, action) => {
@@ -12,7 +12,7 @@ const reducer = (state, action) => {
         case UsersActionTypes.getAll:
             return action.data;
         case UsersActionTypes.addNew:
-            fetch(`ttp://localhost:8080/users` , {
+            fetch(`http://localhost:8080/users` , {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
