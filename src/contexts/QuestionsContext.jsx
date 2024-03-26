@@ -7,7 +7,8 @@ export const QuestionsActionTypes = {
     addNew: 'addNew question to the data',
     delete: 'delete one specific question',
     edit: 'edit one specific question',
-    deleteComment: 'delete one specific comment'
+    addComment: 'add new comment to the specific question',
+    deleteComment: 'delete one specific comment from the question'
 } 
 
 const reducer = (state, action) => {
@@ -37,8 +38,28 @@ const reducer = (state, action) => {
                 body: JSON.stringify(action.data)
             });
             return state.map(item => item.id === action.id ? action.data : item);
+        case QuestionsActionTypes.addComment:
+            const questionToAddComment = state.find(item => item.id === action.questionId);
+            const commentedQuestion = {
+                ...questionToAddComment,
+                comments: questionToAddComment.comments ? [...questionToAddComment.comments, action.comment] : [action.comment]
+            };
+            fetch(`http://localhost:8080/questions/${action.questionId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(commentedQuestion)
+            });
+            return state.map(item => {
+                if(item.id === action.questionId){
+                    return commentedQuestion;
+                } else {
+                    return item;
+                }
+            });
         case QuestionsActionTypes.deleteComment:
-            const questionToChange = state.find(item => item.id === action.questionId);
+            const questionToChange = state.find(item => item.id === action.QuestionId);
             const changedQuestion = {
                 ...questionToChange,
                 comments: questionToChange.comments.filter(comment => comment.id !== action.commentId)
@@ -51,10 +72,10 @@ const reducer = (state, action) => {
                 body: JSON.stringify(changedQuestion)
             });
             return state.map(item => {
-                if(item.id === action.questionId){
+                if(item.id === action.QuestionId){
                     return changedQuestion;
                 } else {
-                return item;
+                    return item;
                 }
             });
         default:

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useContext } from "react";
 import QuestionsContext from "../../contexts/QuestionsContext";
 import UsersContext from "../../contexts/UsersContext";
@@ -29,11 +29,7 @@ const StyledSection = styled.section`
         >h4{
             margin-top: 0;
         }
-        >h2{
-            border-bottom: 1px dashed #ab5fc0;
-            padding-bottom: 10px;
-        }
-        >div:nth-child(1){
+        >div{
             display: flex;
             justify-content: space-between;
             >button{
@@ -45,36 +41,7 @@ const StyledSection = styled.section`
                 }
             }
         }
-        >form{
-                display: flex;
-                justify-content: center;
-                align-items: center; 
-                gap: 10px;
-                >div{
-                    display: flex;
-                    align-items: center;
-                    gap: 10px; 
-                    >textarea{
-                        width: 350px;
-                        height: 25px;
-                        border-radius: 5px;
-                        border: 1px solid #ab5fc0;
-                    }
-                }
-                >button{
-                    padding: 5px 12px;
-                    border-radius: 5px;
-                    border: 1px solid #ab5fc0;
-                
-                }
-            }
-        >div:nth-child(2){
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
     }
-   
 `;
 const OneQuestionPage = () => {
 
@@ -97,10 +64,9 @@ const OneQuestionPage = () => {
         }),
         onSubmit: (values) => {
             const newComment = {
+                text: values.text,
                 id: uuid(),
-                questionId: question.id,
-                userId: loginUser.id,
-                text: values.text
+                authorId: loginUser.id,
             }
             setQuestions({
                 type: QuestionsActionTypes.addComment,
@@ -141,13 +107,27 @@ const OneQuestionPage = () => {
                             <Comment 
                             key={comment.id} 
                             comment={comment}
+                            questionId={question.id}
                             />
                         )
                     }
                 </div>
-                { loginUser &&
-                    <form>
-
+                {
+                    loginUser && 
+                    <form onSubmit={formik.handleSubmit}>
+                        <div>
+                            <label htmlFor="text">Comment:</label>
+                            <textarea
+                                name="text" id="text" 
+                                placeholder="Write your comment here..." 
+                                value={formik.values.text}
+                                onBlur={formik.handleBlur}
+                                onChange={formik.handleChange}
+                            />
+                            {formik.touched.text && formik.errors.text && 
+                            <p>{formik.errors.text}</p>}
+                        </div>
+                        <button type="submit">Submit</button>
                     </form>
                 }
             </div> 
