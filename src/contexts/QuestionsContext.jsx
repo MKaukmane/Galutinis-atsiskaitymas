@@ -10,7 +10,9 @@ export const QuestionsActionTypes = {
     addComment: 'add new comment to the specific question',
     deleteComment: 'delete one specific comment from the question',
     editComment: 'edit one specific comment from the question',
-    likeOrDontQuestion: 'like or dont like one specific question'
+    likeOrDontQuestion: 'like or dont like one specific question',
+    mostComments: 'sort by most comments',
+    lessComments: 'sort by less comments'
 } 
 
 const reducer = (state, action) => {
@@ -127,7 +129,11 @@ const reducer = (state, action) => {
                     return item;
                 }
             });
-                
+        case QuestionsActionTypes.mostComments:
+            return state.sort((a, b) => b.comments.length - a.comments.length);
+        case QuestionsActionTypes.lessComments:
+            return state.sort((a, b) => a.comments.length - b.comments.length);
+
         default:
             console.error(`Action type not found ${action.type}`);
             return state;
