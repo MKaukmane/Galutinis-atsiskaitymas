@@ -3,6 +3,7 @@ import { useContext } from "react";
 import QuestionsContext from "../../contexts/QuestionsContext";
 import OneQuestion from "../UI/OneQuestion";
 import { useLocation } from "react-router-dom";
+import { QuestionsActionTypes } from "../../contexts/QuestionsContext";
 
 const StyledSection = styled.section`
     text-align: center;
@@ -15,12 +16,24 @@ const StyledSection = styled.section`
 
 const Home = () => {
 
-    const {questions} = useContext(QuestionsContext);
+    const {questions, setQuestions} = useContext(QuestionsContext);
     const location = useLocation();
 
     return ( 
         <StyledSection>
             <h1>All questions</h1>
+            <button onClick={() => {
+                setQuestions({
+                    type: QuestionsActionTypes.mostComments
+                })  
+            }}
+            >Most comments</button>
+            <button onClick={() => {
+                setQuestions({
+                    type: QuestionsActionTypes.lessComments
+                })  
+            }}
+            >Less comments</button>
             <div>
                 {
                     questions.map(question => 
