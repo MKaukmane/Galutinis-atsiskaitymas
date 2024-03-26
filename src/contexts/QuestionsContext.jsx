@@ -9,7 +9,8 @@ export const QuestionsActionTypes = {
     edit: 'edit one specific question',
     addComment: 'add new comment to the specific question',
     deleteComment: 'delete one specific comment from the question',
-    editComment: 'edit one specific comment from the question'
+    editComment: 'edit one specific comment from the question',
+    likeOrDontQuestion: 'like or dont like one specific question'
 } 
 
 const reducer = (state, action) => {
@@ -106,6 +107,27 @@ const reducer = (state, action) => {
                     return item;
                 }
             });
+        case QuestionsActionTypes.likeOrDontQuestion:
+            const questionToLike = state.find(item => item.id === action.id);
+            const likedQuestion = {
+                ...questionToLike,
+                liked: questionToLike.liked + 1
+            };
+            fetch(`http://localhost:8080/questions/${action.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(likedQuestion)
+            });
+            return state.map(item => {
+                if(item.id === action.id){
+                    return likedQuestion;
+                } else {
+                    return item;
+                }
+            });
+                
         default:
             console.error(`Action type not found ${action.type}`);
             return state;

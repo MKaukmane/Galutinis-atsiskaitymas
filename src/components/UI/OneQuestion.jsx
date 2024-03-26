@@ -28,6 +28,15 @@ const OneQuestion = ({data, location}) => {
 
     return ( 
         <StyledDiv>
+            {
+                loginUser.id === data.userId &&
+                <button onClick={() => {
+                    setQuestions({
+                        type: QuestionsActionTypes.likeQuestion,
+                        id: data.id
+                    })
+                }}><i className="bi bi-heart"></i>{data.liked}</button>
+            }
             <h4>{data.topic}</h4>
             <h2>{data.question}</h2>
             <Link to={`/${data.id}`}>More info...</Link>
@@ -56,6 +65,7 @@ const OneQuestion = ({data, location}) => {
                     })
                 }}><Link to={`${data.id}/edit`}><i className="bi bi-pencil"></i></Link></button>
             }
+            
         </StyledDiv>
      );
 }

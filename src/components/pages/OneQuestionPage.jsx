@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import QuestionsContext from "../../contexts/QuestionsContext";
 import UsersContext from "../../contexts/UsersContext";
