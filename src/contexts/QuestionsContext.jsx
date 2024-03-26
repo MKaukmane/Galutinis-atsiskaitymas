@@ -8,7 +8,8 @@ export const QuestionsActionTypes = {
     delete: 'delete one specific question',
     edit: 'edit one specific question',
     addComment: 'add new comment to the specific question',
-    deleteComment: 'delete one specific comment from the question'
+    deleteComment: 'delete one specific comment from the question',
+    editComment: 'edit one specific comment from the question'
 } 
 
 const reducer = (state, action) => {
@@ -74,6 +75,33 @@ const reducer = (state, action) => {
             return state.map(item => {
                 if(item.id === action.questionId){
                     return changedQuestion;
+                } else {
+                    return item;
+                }
+            });
+        case QuestionsActionTypes.editComment:
+            const questionToEditComment = state.find(item => item.id === action.questionId);
+            const editedComments = questionToEditComment.comments.map(comment => {
+                if(comment.id === action.comment.id){
+                    return action.comment;
+                } else {
+                    return comment;
+                }
+            });
+            const editedQuestion = {
+                ...questionToEditComment,
+                comments: editedComments
+            };
+            fetch(`http://localhost:8080/questions/${action.questionId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(editedQuestion)
+            });
+            return state.map(item => {
+                if(item.id === action.questionId){
+                    return editedQuestion;
                 } else {
                     return item;
                 }

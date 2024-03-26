@@ -50,6 +50,19 @@ const Comment = ({comment, questionId}) => {
                         })}
                       ><i className="bi bi-trash"></i></button>
                   }
+                  {
+                    loginUser.id === comment.userId &&
+                      <button 
+                        onClick={() => setQuestions({
+                          type: QuestionsActionTypes.editComment,
+                          comment: {
+                            ...comment,
+                            text: prompt('Edit comment', comment.text)
+                          },
+                          questionId: questionId
+                        })}
+                      ><i className="bi bi-pencil"></i></button>
+                  }
                   </p>
                 </div>
             }
