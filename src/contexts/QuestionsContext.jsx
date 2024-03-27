@@ -10,7 +10,8 @@ export const QuestionsActionTypes = {
     addComment: 'add new comment to the specific question',
     deleteComment: 'delete one specific comment from the question',
     editComment: 'edit one specific comment from the question',
-    likeOrDontQuestion: 'like or dont like one specific question',
+    likesQuestion: 'like one specific question',
+    dislikesQuestion: 'dislike one specific question',
     mostComments: 'sort by most comments',
     lessComments: 'sort by less comments'
 } 
@@ -109,27 +110,34 @@ const reducer = (state, action) => {
                     return item;
                 }
             });
-        case QuestionsActionTypes.likeOrDontQuestion:
-            return state.map(question => {
-                if(action.id === question.id){
-                    fetch(`http://localhost:8080/questions/${action.id}`, {
-                        method: "PATCH",
-                        headers:{
-                            "Contet-Type":"application/json"
-                        },
-                        body: JSON.stringify({
-                            liked: !question.liked
-                        })
-                    });
-                    return{
-                        ...question,
-                        liked: !question.liked
-                    }
-                } else {
-                    return question;
-                }
+        case QuestionsActionTypes.likesQuestion:
+            const questionToLike = state.find(item => item.id === action.id);
+            const likedQuestion = {
+                ...questionToLike,
+                likes: questionToLike.likes + 1
+            };
+            fetch(`http://localhost:8080/questions/${action.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(likedQuestion)
             });
-            
+            return state.map(item => item.id === action.id ? likedQuestion : item);
+        case QuestionsActionTypes.dislikesQuestion:
+            const questionToDislike = state.find(item => item.id === action.id);
+            const dislikedQuestion = {
+                ...questionToDislike,
+                dislikes: questionToDislike.dislikes + 1
+            };
+            fetch(`http://localhost:8080/questions/${action.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dislikedQuestion)
+            });
+            return state.map(item => item.id === action.id ? dislikedQuestion : item);
         case QuestionsActionTypes.mostComments:
             return state.sort((a, b) => b.comments.length - a.comments.length);
         case QuestionsActionTypes.lessComments:

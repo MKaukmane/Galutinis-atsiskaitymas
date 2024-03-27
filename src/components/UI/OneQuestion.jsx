@@ -3,7 +3,7 @@ import { useContext } from "react";
 import QuestionsContext from "../../contexts/QuestionsContext";
 import UsersContext from "../../contexts/UsersContext";
 import { QuestionsActionTypes } from "../../contexts/QuestionsContext";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const StyledDiv = styled.div`
     border: 1px solid #ab5fc0;
@@ -35,6 +35,7 @@ const OneQuestion = ({data, location}) => {
 
     const { setQuestions } = useContext(QuestionsContext);
     const { loginUser } = useContext(UsersContext);
+    const navigate = useNavigate();
 
     return ( 
         <StyledDiv>
@@ -66,25 +67,33 @@ const OneQuestion = ({data, location}) => {
                     })
                 }}><Link to={`${data.id}/edit`}><i className="bi bi-pencil"></i></Link></button>
             }
-            {
-                loginUser.id === data.userId &&
+           
                 <div>
+                    
                     <button 
-                        onClick={() => setQuestions({
-                            type: QuestionsActionTypes.likeOrDontQuestion,
-                            id: data.id,
-                            liked: false
-                        })}
-                    ><i className="bi bi-hand-thumbs-down"></i></button> 
-                    <button 
-                        onClick={() => setQuestions({
-                            type: QuestionsActionTypes.likeOrDontQuestion,
-                            id: data.id,
-                            liked: true
-                        })}
-                    ><i className="bi bi-hand-thumbs-up"></i></button>
+                    onClick={() => {
+                        setQuestions({
+                            type: QuestionsActionTypes.likes,
+                            id: data.id
+                        })
+                    }}>
+                        <i className="bi bi-hand-thumbs-up"></i>
+                        {loginUser ? 
+                        data.likes.length
+                        : <div><NavLink to='/user/login'></NavLink></div>}
+                    </button>
+                    <button onClick={() => {
+                        setQuestions({
+                            type: QuestionsActionTypes.dislikes,
+                            id: data.id
+                        })
+                        {loginUser ? 
+                            data.dislikes.length
+                            : <div><NavLink to='/user/login'></NavLink></div>}
+                    }}><i className="bi bi-hand-thumbs-down"></i>{data.dislikes.length}</button>
                 </div>
-            }
+
+            
         </StyledDiv>
      );
 }

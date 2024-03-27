@@ -1,11 +1,12 @@
 {
   "questions": [
     {
+      "id": "1",
       "userId": "0",
       "topic": "Food",
       "question": "Best place to eat in Kaunas?",
-      "id": "1",
-      "liked": false,
+      "likes": ["7d13"],
+      "dislikes": [],
       "comments": [
         {
           "id": "0",
@@ -28,11 +29,12 @@
       ]
     },
     {
+      "id": "2",
       "userId": "7d13",
       "topic": "Food",
       "question": "Where is best sushi in Klaipeda?",
-      "id": "2",
-      "liked": false,
+      "likes": ["0", "1"],
+      "dislikes": [],
       "comments": [
         {
           "id": "ffde43bb-0fe5-48e3-90d6-2c5817a2529c",
@@ -61,11 +63,12 @@
       ]
     },
     {
+      "id": "3",
       "userId": "0",
       "topic": "Car",
       "question": "Best car for family?",
-      "id": "3",
-      "liked": false,
+      "likes": ["1"],
+      "dislikes": [],
       "comments": [
         {
           "id": "49ecdaee-3907-4298-8f6b-d8447b0144dc",
@@ -82,11 +85,12 @@
       ]
     },
     {
+      "id": "4",
       "userId": "1",
       "topic": "House",
       "question": "Where to buy table for 6 people?",
-      "id": "4",
-      "liked": false,
+      "likes": ["7d13"],
+      "dislikes": ["0"],
       "comments": [
         {
           "id": "88b01bdf-0dbb-4c4e-9458-63953e9ab48e",
@@ -100,7 +104,10 @@
       "id": "0ac052df-2a41-4e61-a0a2-b64a63361a45",
       "userId": "7d13",
       "topic": "Places",
-      "question": "What must be visited in Alytus"
+      "question": "What must be visited in Alytus",
+      "likes": [],
+      "dislikes": [],
+      "comments": []
     }
   ],
   "users": [

@@ -60,7 +60,11 @@ const NewQuestions = () => {
             const newCard = {
                 id: uuid(),
                 userId: loginUser.id,
-                ...values
+                topic: values.topic,
+                question: values.question,
+                likes: [],
+                dislikes: [],
+                comments: []
             }
             setQuestions({
                 type: QuestionsActionTypes.addNew,
