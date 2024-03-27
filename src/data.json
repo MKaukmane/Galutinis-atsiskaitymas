@@ -28,7 +28,7 @@
       ]
     },
     {
-      "userId": "0",
+      "userId": "7d13",
       "topic": "Food",
       "question": "Where is best sushi in Klaipeda?",
       "id": "2",
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "userId": "0",
+      "userId": "1",
       "topic": "House",
       "question": "Where to buy table for 6 people?",
       "id": "4",
@@ -95,6 +95,12 @@
           "text": "Ikea Vilniuje"
         }
       ]
+    },
+    {
+      "id": "0ac052df-2a41-4e61-a0a2-b64a63361a45",
+      "userId": "7d13",
+      "topic": "Places",
+      "question": "What must be visited in Alytus"
     }
   ],
   "users": [

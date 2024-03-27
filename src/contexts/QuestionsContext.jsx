@@ -110,25 +110,26 @@ const reducer = (state, action) => {
                 }
             });
         case QuestionsActionTypes.likeOrDontQuestion:
-            const questionToLike = state.find(item => item.id === action.id);
-            const likedQuestion = {
-                ...questionToLike,
-                liked: questionToLike.liked + 1
-            };
-            fetch(`http://localhost:8080/questions/${action.id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(likedQuestion)
-            });
-            return state.map(item => {
-                if(item.id === action.id){
-                    return likedQuestion;
+            return state.map(question => {
+                if(action.id === question.id){
+                    fetch(`http://localhost:8080/questions/${action.id}`, {
+                        method: "PATCH",
+                        headers:{
+                            "Contet-Type":"application/json"
+                        },
+                        body: JSON.stringify({
+                            liked: !question.liked
+                        })
+                    });
+                    return{
+                        ...question,
+                        liked: !question.liked
+                    }
                 } else {
-                    return item;
+                    return question;
                 }
             });
+            
         case QuestionsActionTypes.mostComments:
             return state.sort((a, b) => b.comments.length - a.comments.length);
         case QuestionsActionTypes.lessComments:

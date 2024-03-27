@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useContext } from "react";
 import QuestionsContext from "../../contexts/QuestionsContext";
 import OneQuestion from "../UI/OneQuestion";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { QuestionsActionTypes } from "../../contexts/QuestionsContext";
 
 const StyledSection = styled.section`
@@ -12,12 +12,20 @@ const StyledSection = styled.section`
     >h1{
         color: #ab5fc0;
     }
+    >button{
+        border: 1px solid #ab5fc0;
+        border-radius: 5px;
+        background-color: transparent;
+        padding: 5px 10px;
+        margin: 2px 10px;
+    }
 `;
 
 const Home = () => {
 
     const {questions, setQuestions} = useContext(QuestionsContext);
     const location = useLocation();
+    const navigate = useNavigate();
 
     return ( 
         <StyledSection>
@@ -25,13 +33,15 @@ const Home = () => {
             <button onClick={() => {
                 setQuestions({
                     type: QuestionsActionTypes.mostComments
-                })  
+                });
+                navigate('/');  
             }}
             >Most comments</button>
             <button onClick={() => {
                 setQuestions({
                     type: QuestionsActionTypes.lessComments
-                })  
+                });
+                navigate('/');
             }}
             >Less comments</button>
             <div>

@@ -18,7 +18,17 @@ const StyledDiv = styled.div`
         text-decoration: underline;
         color: #e276fd;
     }
+    >div{
+        >button{
+            border: none;
+            background-color: transparent;
+            margin-top: 10px;
+            >i:hover{
+                color: #e276fd;
+            }
 
+        }
+    }
 `;
 
 const OneQuestion = ({data, location}) => {
@@ -28,15 +38,6 @@ const OneQuestion = ({data, location}) => {
 
     return ( 
         <StyledDiv>
-            {
-                loginUser.id === data.userId &&
-                <button onClick={() => {
-                    setQuestions({
-                        type: QuestionsActionTypes.likeQuestion,
-                        id: data.id
-                    })
-                }}><i className="bi bi-heart"></i>{data.liked}</button>
-            }
             <h4>{data.topic}</h4>
             <h2>{data.question}</h2>
             <Link to={`/${data.id}`}>More info...</Link>
@@ -65,7 +66,25 @@ const OneQuestion = ({data, location}) => {
                     })
                 }}><Link to={`${data.id}/edit`}><i className="bi bi-pencil"></i></Link></button>
             }
-            
+            {
+                loginUser.id === data.userId &&
+                <div>
+                    <button 
+                        onClick={() => setQuestions({
+                            type: QuestionsActionTypes.likeOrDontQuestion,
+                            id: data.id,
+                            liked: false
+                        })}
+                    ><i className="bi bi-hand-thumbs-down"></i></button> 
+                    <button 
+                        onClick={() => setQuestions({
+                            type: QuestionsActionTypes.likeOrDontQuestion,
+                            id: data.id,
+                            liked: true
+                        })}
+                    ><i className="bi bi-hand-thumbs-up"></i></button>
+                </div>
+            }
         </StyledDiv>
      );
 }
