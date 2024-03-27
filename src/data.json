@@ -5,7 +5,7 @@
       "userId": "0",
       "topic": "Food",
       "question": "Best place to eat in Kaunas?",
-      "likes": ["7d13"],
+      "likes": "7d13111111111111",
       "dislikes": [],
       "comments": [
         {
@@ -33,7 +33,7 @@
       "userId": "7d13",
       "topic": "Food",
       "question": "Where is best sushi in Klaipeda?",
-      "likes": ["0", "1"],
+      "likes": "0,1111",
       "dislikes": [],
       "comments": [
         {
@@ -67,7 +67,9 @@
       "userId": "0",
       "topic": "Car",
       "question": "Best car for family?",
-      "likes": ["1"],
+      "likes": [
+        "1"
+      ],
       "dislikes": [],
       "comments": [
         {
@@ -89,8 +91,12 @@
       "userId": "1",
       "topic": "House",
       "question": "Where to buy table for 6 people?",
-      "likes": ["7d13"],
-      "dislikes": ["0"],
+      "likes": [
+        "7d13"
+      ],
+      "dislikes": [
+        "0"
+      ],
       "comments": [
         {
           "id": "88b01bdf-0dbb-4c4e-9458-63953e9ab48e",

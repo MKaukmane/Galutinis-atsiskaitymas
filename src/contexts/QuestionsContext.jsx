@@ -110,13 +110,13 @@ const reducer = (state, action) => {
                     return item;
                 }
             });
-        case QuestionsActionTypes.likesQuestion:
+        case QuestionsActionTypes.likes:
             const questionToLike = state.find(item => item.id === action.id);
             const likedQuestion = {
                 ...questionToLike,
                 likes: questionToLike.likes + 1
             };
-            fetch(`http://localhost:8080/questions/${action.userId}`, {
+            fetch(`http://localhost:8080/questions/${action.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -124,7 +124,7 @@ const reducer = (state, action) => {
                 body: JSON.stringify(likedQuestion)
             });
             return state.map(item => item.id === action.id ? likedQuestion : item);
-        case QuestionsActionTypes.dislikesQuestion:
+        case QuestionsActionTypes.dislikes:
             const questionToDislike = state.find(item => item.id === action.id);
             const dislikedQuestion = {
                 ...questionToDislike,

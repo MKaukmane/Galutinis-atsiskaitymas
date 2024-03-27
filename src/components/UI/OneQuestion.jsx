@@ -70,8 +70,7 @@ const OneQuestion = ({data, location}) => {
            
                 <div>
                     
-                    <button 
-                    onClick={() => {
+                    <button onClick={() => {
                         setQuestions({
                             type: QuestionsActionTypes.likes,
                             id: data.id
@@ -87,10 +86,12 @@ const OneQuestion = ({data, location}) => {
                             type: QuestionsActionTypes.dislikes,
                             id: data.id
                         })
-                    }}><i className="bi bi-hand-thumbs-down"></i>{data.dislikes.length}</button>
+                    }}>
+                        <i className="bi bi-hand-thumbs-down"></i>
                         {loginUser ? 
                         data.dislikes.length
                         : <div><NavLink to='/user/login'></NavLink></div>}
+                    </button>
                 </div>
 
             
