@@ -114,7 +114,7 @@ const reducer = (state, action) => {
             const questionToLike = state.find(item => item.id === action.id);
             const likedQuestion = {
                 ...questionToLike,
-                likes: questionToLike.likes + 1
+                likes: questionToLike.userId
             };
             fetch(`http://localhost:8080/questions/${action.id}`, {
                 method: 'PUT',
@@ -124,6 +124,7 @@ const reducer = (state, action) => {
                 body: JSON.stringify(likedQuestion)
             });
             return state.map(item => item.id === action.id ? likedQuestion : item);
+
         case QuestionsActionTypes.dislikes:
             const questionToDislike = state.find(item => item.id === action.id);
             const dislikedQuestion = {
@@ -138,6 +139,7 @@ const reducer = (state, action) => {
                 body: JSON.stringify(dislikedQuestion)
             });
             return state.map(item => item.id === action.id ? dislikedQuestion : item);
+
         case QuestionsActionTypes.mostComments:
             return state.sort((a, b) => b.comments.length - a.comments.length);
         case QuestionsActionTypes.lessComments:
