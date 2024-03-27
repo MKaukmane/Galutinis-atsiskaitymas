@@ -116,7 +116,7 @@ const reducer = (state, action) => {
                 ...questionToLike,
                 likes: questionToLike.likes + 1
             };
-            fetch(`http://localhost:8080/questions/${action.id}`, {
+            fetch(`http://localhost:8080/questions/${action.userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

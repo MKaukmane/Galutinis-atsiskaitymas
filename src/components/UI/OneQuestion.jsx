@@ -87,10 +87,10 @@ const OneQuestion = ({data, location}) => {
                             type: QuestionsActionTypes.dislikes,
                             id: data.id
                         })
-                        {loginUser ? 
-                            data.dislikes.length
-                            : <div><NavLink to='/user/login'></NavLink></div>}
                     }}><i className="bi bi-hand-thumbs-down"></i>{data.dislikes.length}</button>
+                        {loginUser ? 
+                        data.dislikes.length
+                        : <div><NavLink to='/user/login'></NavLink></div>}
                 </div>
 
             
