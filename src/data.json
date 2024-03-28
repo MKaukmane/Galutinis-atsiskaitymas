@@ -10,9 +10,7 @@
         "7d13",
         "0"
       ],
-      "dislikes": [
-        "0"
-      ],
+      "dislikes": [],
       "comments": [
         {
           "id": "0",
@@ -42,7 +40,9 @@
       "likes": [
         "0"
       ],
-      "dislikes": [],
+      "dislikes": [
+        "7d13"
+      ],
       "comments": [
         {
           "id": "ffde43bb-0fe5-48e3-90d6-2c5817a2529c",
@@ -78,7 +78,9 @@
       "likes": [
         "1"
       ],
-      "dislikes": [],
+      "dislikes": [
+        "0"
+      ],
       "comments": [
         {
           "id": "49ecdaee-3907-4298-8f6b-d8447b0144dc",

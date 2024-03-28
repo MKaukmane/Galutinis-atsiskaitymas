@@ -104,23 +104,12 @@ const OneQuestionPage = () => {
             questions.length &&
             <div>
                 <div>
-                    <div>
                     {
                         loginUser.id === question.userId && 
                         <button onClick={() => 
                             navigate(`/${question.id}/edit`)}
                             ><i className="bi bi-pencil"></i></button>
                     }
-                    {
-                        questions.map(question => (
-                            <div key={question.id}>
-                                {question.editedAt && (
-                                    <p>Edited: {new Date(question.editedAt).toLocaleString()}</p>
-                                )}
-                            </div>
-                        ))
-                    }
-                    </div>
                 {
                     loginUser.id === question.userId && 
                     <button onClick={() => {
