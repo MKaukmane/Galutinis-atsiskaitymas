@@ -110,35 +110,49 @@ const reducer = (state, action) => {
                     return item;
                 }
             });
-        case QuestionsActionTypes.likes:
-            const questionToLike = state.find(item => item.id === action.id);
-            const likedQuestion = {
-                ...questionToLike,
-                likes: questionToLike.userId
-            };
-            fetch(`http://localhost:8080/questions/${action.id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(likedQuestion)
-            });
-            return state.map(item => item.id === action.id ? likedQuestion : item);
-
-        case QuestionsActionTypes.dislikes:
-            const questionToDislike = state.find(item => item.id === action.id);
-            const dislikedQuestion = {
-                ...questionToDislike,
-                dislikes: questionToDislike.dislikes + 1
-            };
-            fetch(`http://localhost:8080/questions/${action.id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(dislikedQuestion)
-            });
-            return state.map(item => item.id === action.id ? dislikedQuestion : item);
+            case QuestionsActionTypes.likesQuestion:
+                const questionToLike = state.find(item => item.id === action.id);
+    
+                if (!questionToLike.likes.includes(questionToLike.userId)) {
+                    const likedQuestion = {
+                        ...questionToLike,
+                        likes: [...questionToLike.likes, questionToLike.userId]
+                    };
+    
+                    fetch(`http://localhost:8080/questions/${action.id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(likedQuestion)
+                    });
+    
+                    return state.map(item => item.id === action.id ? likedQuestion : item);
+                }
+    
+                return state;
+    
+            case QuestionsActionTypes.dislikeQuestion:
+                const questionToDislike = state.find(item => item.id === action.id);
+    
+                if (!questionToDislike.dislikes.includes(questionToDislike.userId)) {
+                    const dislikedQuestion = {
+                        ...questionToDislike,
+                        dislikes: [...questionToDislike.dislikes, questionToDislike.userId]
+                    };
+    
+                    fetch(`http://localhost:8080/questions/${action.id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(dislikedQuestion)
+                    });
+    
+                    return state.map(item => item.id === action.id ? dislikedQuestion : item);
+                }
+    
+                return state;
 
         case QuestionsActionTypes.mostComments:
             return state.sort((a, b) => b.comments.length - a.comments.length);

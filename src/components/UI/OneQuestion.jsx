@@ -72,7 +72,7 @@ const OneQuestion = ({data, location}) => {
                     
                     <button onClick={() => {
                         setQuestions({
-                            type: QuestionsActionTypes.likes,
+                            type: QuestionsActionTypes.likesQuestion,
                             id: data.id
                         })
                     }}>
@@ -83,7 +83,7 @@ const OneQuestion = ({data, location}) => {
                     </button>
                     <button onClick={() => {
                         setQuestions({
-                            type: QuestionsActionTypes.dislikes,
+                            type: QuestionsActionTypes.dislikeQuestion,
                             id: data.id
                         })
                     }}>
