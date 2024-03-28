@@ -6,11 +6,27 @@ import QuestionsContext from "../../contexts/QuestionsContext";
 import OneQuestion from "../UI/OneQuestion";
 
 const StyledSection = styled.section`
-    text-align: center;
     margin: 20px;
-
-    >h1{
+    >button{
+        border: none;
+        background-color: transparent;
+        margin-top: 20px;
+        font-size: 20px;
+        text-align: left;
+        >a {
+            >i{
+                color: black;
+            }
+            >i:hover{
+                color: #e276fd;
+            }
+        }
+    }
+    >div{
+        text-align: center;
+        >h1{
         color: #ab5fc0;
+        margin-top: 0;
     }
     >p{
         a{
@@ -21,6 +37,7 @@ const StyledSection = styled.section`
             text-decoration: underline;
             color: #e276fd;
         }
+    }
     }
 `;
 
@@ -33,23 +50,26 @@ const UserPage = () => {
 
     return ( 
         <StyledSection>
-            <h1>{loginUser.userName} Qusetions</h1>
-            <p><Link to='/addNew'>Add new question</Link></p>
-            {
-                userQuestions.length ?
-                <div>
-                    {
-                        userQuestions.map(question => 
-                        <OneQuestion 
-                        key={question.id} 
-                        data={question} 
-                        location={location}
-                        />
-                        )
-                    }
-                </div> :
-                <p>No questions</p>
-            }
+            <button><Link to="/"><i className="bi bi-arrow-left"></i></Link></button>
+            <div>
+                <h1>{loginUser.userName} Qusetions</h1>
+                <p><Link to='/addNew'>Add new question</Link></p>
+                {
+                    userQuestions.length ?
+                    <div>
+                        {
+                            userQuestions.map(question => 
+                            <OneQuestion 
+                            key={question.id} 
+                            data={question} 
+                            location={location}
+                            />
+                            )
+                        }
+                    </div> :
+                    <p>No questions</p>
+                }
+            </div>
         </StyledSection>
      );
 }

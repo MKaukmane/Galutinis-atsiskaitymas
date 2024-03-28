@@ -10,6 +10,7 @@ const StyledSection = styled.section`
 margin-left: 50px;
     >h1{
         font-size: 1.8rem;
+        color: #ab5fc0;
     }
     >form{
         display: flex;
@@ -38,7 +39,11 @@ margin-left: 50px;
             margin-left: 300px;
             padding: 5px;
             border-radius: 5px;
-            border: 1px solid black;
+            border: 1px solid #ab5fc0;
+            background-color: transparent;
+        }
+        >button:hover{
+            color: #e276fd;
         }
     }
 `;

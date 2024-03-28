@@ -4,14 +4,29 @@ import QuestionContext from '../../contexts/QuestionsContext';
 import { useContext } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import { QuestionsActionTypes } from '../../contexts/QuestionsContext';
 
 const StyledSection = styled.section`
 margin-left: 50px;
+    >button{
+        border: none;
+        background-color: transparent;
+        margin-top: 20px;
+        font-size: 20px;
+        >a {
+            >i{
+                color: black;
+            }
+            >i:hover{
+                color: #e276fd;
+            }
+        }
+    }
     >h2{
         font-size: 1.8rem;
+        color: #ab5fc0;
     }
     >form{
         display: flex;
@@ -40,7 +55,11 @@ margin-left: 50px;
             margin-left: 300px;
             padding: 5px;
             border-radius: 5px;
-            border: 1px solid black;
+            border: 1px solid #ab5fc0;
+            background-color: transparent;
+        }
+        >button:hover{
+            color: #e276fd;
         }
     }
 `;
@@ -88,6 +107,7 @@ const NewQuestions = () => {
 
     return ( 
         <StyledSection>
+            <button><Link to="/"><i className="bi bi-arrow-left"></i></Link></button>
             <h2>Add new question</h2>
             <form onSubmit={formik.handleSubmit}>
                 <div>
@@ -100,7 +120,7 @@ const NewQuestions = () => {
                     onBlur={formik.handleBlur}
                     />
                     {formik.touched.topic && formik.errors.topic && 
-                    <div>{formik.errors.topic}</div>}
+                    <p>{formik.errors.topic}</p>}
                 </div>
                 <div>
                     <label htmlFor='question'>Question:</label>
@@ -112,7 +132,7 @@ const NewQuestions = () => {
                     onBlur={formik.handleBlur}
                     />
                     {formik.touched.question && formik.errors.question && 
-                    <div>{formik.errors.question}</div>}
+                    <p>{formik.errors.question}</p>}
                 </div>
                 <button type='submit'>Add question</button>
             </form>

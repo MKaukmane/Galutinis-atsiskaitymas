@@ -48,9 +48,15 @@ const StyledHeader = styled.header`
                     text-decoration: none;
                     color: #e276fd;
                 }
+                >a:hover{
+                    text-decoration: underline;
+                }
             }
             >button{
                 border: none;
+                >i:hover{
+                    color: #e276fd;
+                }
             }
         }
     }

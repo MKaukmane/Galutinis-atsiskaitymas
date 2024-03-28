@@ -42,32 +42,6 @@ const OneQuestion = ({data, location}) => {
             <h4>{data.topic}</h4>
             <h2>{data.question}</h2>
             <Link to={`/${data.id}`}>More info...</Link>
-            {
-                location.pathname === '/home' &&
-                loginUser.id === data.userId && 
-                <button onClick={() => {
-                    setQuestions({
-                        type: QuestionsActionTypes.delete,
-                        id: data.id
-                    })
-                }}><i className="bi bi-trash"></i></button>
-            }
-            {
-                location.pathname === '/home' &&
-                loginUser.id === data.userId && 
-                <button onClick={() => {
-                    setQuestions({
-                        type: QuestionsActionTypes.edit,
-                        id: data.id,
-                        data: {
-                            userId: data.userId,
-                            topic: data.topic,
-                            question: data.question
-                        }
-                    })
-                }}><Link to={`${data.id}/edit`}><i className="bi bi-pencil"></i></Link></button>
-            }
-           
                 <div>
                     
                     <button onClick={() => {

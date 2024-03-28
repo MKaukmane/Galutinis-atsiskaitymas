@@ -13,12 +13,18 @@ const StyledSection = styled.section`
         background-color: transparent;
         margin-top: 20px;
         font-size: 20px;
-        >a >i{
-            color: black;
+        >a {
+            >i{
+                color: black;
+            }
+            >i:hover{
+                color: #e276fd;
+            }
         }
     }
     >h1{
         font-size: 1.8rem;
+        color: #ab5fc0;
     }
     >form{
         display: flex;
@@ -47,7 +53,11 @@ const StyledSection = styled.section`
             margin-left: 300px;
             padding: 5px;
             border-radius: 5px;
-            border: 1px solid black;
+            border: 1px solid #ab5fc0;
+            background-color: transparent;
+        }
+        >button:hover{
+            color: #e276fd;
         }
     }
 `;

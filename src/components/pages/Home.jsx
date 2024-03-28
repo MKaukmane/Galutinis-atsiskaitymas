@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import QuestionsContext from "../../contexts/QuestionsContext";
 import OneQuestion from "../UI/OneQuestion";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -19,6 +19,9 @@ const StyledSection = styled.section`
         padding: 5px 10px;
         margin: 2px 10px;
     }
+    >button:hover{
+        color: #e276fd;
+    }
 `;
 
 const Home = () => {
@@ -26,24 +29,51 @@ const Home = () => {
     const {questions, setQuestions} = useContext(QuestionsContext);
     const location = useLocation();
     const navigate = useNavigate();
+    const [showButtons, setShowButtons] = useState(false);
+
+    const withComment = () => {
+        setShowButtons(true);
+    }
 
     return ( 
         <StyledSection>
             <h1>All questions</h1>
             <button onClick={() => {
                 setQuestions({
-                    type: QuestionsActionTypes.mostComments
-                });
-                navigate('/');  
-            }}
-            >Most comments</button>
-            <button onClick={() => {
-                setQuestions({
-                    type: QuestionsActionTypes.lessComments
+                    type: QuestionsActionTypes.noComment
                 });
                 navigate('/');
-            }}
-            >Less comments</button>
+            }}>No comment</button>
+
+            <button onClick={() => {    
+                setQuestions({
+                    type: QuestionsActionTypes.withComment
+                });
+                navigate('/');
+            }}>
+
+            With comments</button>
+            {
+                showButtons && (
+                <div>
+                    <button onClick={() => {
+                    setQuestions({
+                        type: QuestionsActionTypes.mostComments
+                    });
+                    navigate('/');  
+                }}
+                >Most comments</button>
+    
+                <button onClick={() => {
+                    setQuestions({
+                        type: QuestionsActionTypes.lessComments
+                    });
+                    navigate('/');
+                }}
+                >Less comments</button> 
+                </div>
+            )}
+            
             <div>
                 {
                     questions.map(question => 

@@ -124,7 +124,7 @@ const OneQuestionPage = () => {
                             type: QuestionsActionTypes.delete,
                             id: question.id
                         });
-                        navigate('-1');
+                        navigate('/');
                     }}><i className="bi bi-trash"></i></button>
                 }
                 </div>

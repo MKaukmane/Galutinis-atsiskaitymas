@@ -11,15 +11,18 @@ export const QuestionsActionTypes = {
     deleteComment: 'delete one specific comment from the question',
     editComment: 'edit one specific comment from the question',
     likesQuestion: 'like one specific question',
-    dislikesQuestion: 'dislike one specific question',
+    dislikeQuestion: 'dislike one specific question',
     mostComments: 'sort by most comments',
-    lessComments: 'sort by less comments'
+    lessComments: 'sort by less comments',
+    noComment: 'filter by no comments',
+    withComment: 'filter by with comments'
 } 
 
 const reducer = (state, action) => {
     switch(action.type){
         case QuestionsActionTypes.getAll:
             return action.data;
+            
         case QuestionsActionTypes.addNew:
             fetch(`http://localhost:8080/questions` , {
                 method: 'POST',
@@ -29,11 +32,13 @@ const reducer = (state, action) => {
                 body: JSON.stringify(action.data)
             });
             return [...state, action.data];
+
         case QuestionsActionTypes.delete:
             fetch(`http://localhost:8080/questions/${action.id}`, {
                 method: 'DELETE'
             });
             return state.filter(item => item.id !== action.id);
+
         case QuestionsActionTypes.edit:
             fetch(`http://localhost:8080/questions/${action.id}`, {
                 method: 'PUT',
@@ -43,6 +48,7 @@ const reducer = (state, action) => {
                 body: JSON.stringify(action.data)
             });
             return state.map(item => item.id === action.id ? action.data : item);
+
         case QuestionsActionTypes.addComment:
             const questionToAddComment = state.find(item => item.id === action.questionId);
             const commentedQuestion = {
@@ -63,6 +69,7 @@ const reducer = (state, action) => {
                     return item;
                 }
             });
+
         case QuestionsActionTypes.deleteComment:
             const questionToChange = state.find(item => item.id === action.questionId);
             const changedQuestion = {
@@ -83,6 +90,7 @@ const reducer = (state, action) => {
                     return item;
                 }
             });
+
         case QuestionsActionTypes.editComment:
             const questionToEditComment = state.find(item => item.id === action.questionId);
             const editedComments = questionToEditComment.comments.map(comment => {
@@ -110,55 +118,53 @@ const reducer = (state, action) => {
                     return item;
                 }
             });
-            case QuestionsActionTypes.likesQuestion:
-                const questionToLike = state.find(item => item.id === action.id);
-    
-                if (!questionToLike.likes.includes(questionToLike.userId)) {
-                    const likedQuestion = {
-                        ...questionToLike,
-                        likes: [...questionToLike.likes, questionToLike.userId]
-                    };
-    
-                    fetch(`http://localhost:8080/questions/${action.id}`, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(likedQuestion)
-                    });
-    
-                    return state.map(item => item.id === action.id ? likedQuestion : item);
-                }
-    
-                return state;
-    
-            case QuestionsActionTypes.dislikeQuestion:
-                const questionToDislike = state.find(item => item.id === action.id);
-    
-                if (!questionToDislike.dislikes.includes(questionToDislike.userId)) {
-                    const dislikedQuestion = {
-                        ...questionToDislike,
-                        dislikes: [...questionToDislike.dislikes, questionToDislike.userId]
-                    };
-    
-                    fetch(`http://localhost:8080/questions/${action.id}`, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(dislikedQuestion)
-                    });
-    
-                    return state.map(item => item.id === action.id ? dislikedQuestion : item);
-                }
-    
-                return state;
+
+        case QuestionsActionTypes.likesQuestion:
+            const questionToLike = state.find(item => item.id === action.id);
+            if (!questionToLike.likes.includes(questionToLike.userId)) {
+                const likedQuestion = {
+                    ...questionToLike,
+                    likes: [...questionToLike.likes, questionToLike.userId]
+                };
+                fetch(`http://localhost:8080/questions/${action.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(likedQuestion)
+                });
+                return state.map(item => item.id === action.id ? likedQuestion : item);
+            }
+            return state;
+
+        case QuestionsActionTypes.dislikeQuestion:
+            const questionToDislike = state.find(item => item.id === action.id);
+            if (!questionToDislike.dislikes.includes(questionToDislike.userId)) {
+                const dislikedQuestion = {
+                    ...questionToDislike,
+                    dislikes: [...questionToDislike.dislikes, questionToDislike.userId]
+                };
+                fetch(`http://localhost:8080/questions/${action.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dislikedQuestion)
+                });
+                return state.map(item => item.id === action.id ? dislikedQuestion : item);
+            }
+            return state;
 
         case QuestionsActionTypes.mostComments:
             return state.sort((a, b) => b.comments.length - a.comments.length);
         case QuestionsActionTypes.lessComments:
             return state.sort((a, b) => a.comments.length - b.comments.length);
 
+        case QuestionsActionTypes.noComment:
+            return state.filter(item => item.comments.length === 0);
+        case QuestionsActionTypes.withComment:
+            return state.filter(item => item.comments.length > 0);
+            
         default:
             console.error(`Action type not found ${action.type}`);
             return state;

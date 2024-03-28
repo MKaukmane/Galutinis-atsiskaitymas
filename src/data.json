@@ -6,7 +6,8 @@
       "topic": "Food",
       "question": "Best place to eat in Kaunas?",
       "likes": [
-        "7d13"
+        "7d13",
+        "0"
       ],
       "dislikes": [
         "0"
@@ -19,16 +20,16 @@
           "text": "I like to eat in 'Viva la vita'"
         },
         {
-          "id": "1",
-          "questionId": "1",
-          "userId": "0",
-          "text": "London Grill"
-        },
-        {
           "id": "b2783cff-04de-465e-96d9-d3ebd260d609",
           "questionId": "1",
           "userId": "7d13",
           "text": "Čili pica"
+        },
+        {
+          "id": "3634a50b-814b-4476-bd73-767baf9e7adc",
+          "questionId": "1",
+          "userId": "0",
+          "text": "London Grill"
         }
       ]
     },
@@ -142,6 +143,13 @@
       "userName": "Jolanta",
       "email": "jolantele@gmail.com",
       "password": "$2a$10$IAEtGegYlZQ0B.vx0QZRGuu2bUjBSApVu0//d1oDmTxShVIIT36xS",
+      "passwordNoHash": "123456"
+    },
+    {
+      "id": "efe634a5-19cc-4927-b444-fd05b2482ab8",
+      "userName": "Paulina",
+      "email": "paulina@gmail.com",
+      "password": "$2a$10$8oWH8iHEukK1iXI.p8F2we045d6DgPmCrTec.iyqbZ8vdfir1aiqq",
       "passwordNoHash": "123456"
     }
   ]
