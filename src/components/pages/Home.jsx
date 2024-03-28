@@ -18,9 +18,23 @@ const StyledSection = styled.section`
         background-color: transparent;
         padding: 5px 10px;
         margin: 2px 10px;
+        width: 150px;
     }
     >button:hover{
         color: #e276fd;
+    }
+    >div{
+        >button{
+            border: 1px solid #ab5fc0;
+            border-radius: 5px;
+            background-color: transparent;
+            padding: 5px 10px;
+            margin: 2px 10px;
+            width: 150px;
+        }
+        >button:hover{
+            color: #e276fd;
+        }
     }
 `;
 
@@ -31,10 +45,6 @@ const Home = () => {
     const navigate = useNavigate();
     const [showButtons, setShowButtons] = useState(false);
 
-    const withComment = () => {
-        setShowButtons(true);
-    }
-
     return ( 
         <StyledSection>
             <h1>All questions</h1>
@@ -43,12 +53,14 @@ const Home = () => {
                     type: QuestionsActionTypes.noComment
                 });
                 navigate('/');
+                setShowButtons(false);
             }}>No comment</button>
 
             <button onClick={() => {    
                 setQuestions({
                     type: QuestionsActionTypes.withComment
                 });
+                setShowButtons(true);
                 navigate('/');
             }}>
 
@@ -57,20 +69,20 @@ const Home = () => {
                 showButtons && (
                 <div>
                     <button onClick={() => {
-                    setQuestions({
-                        type: QuestionsActionTypes.mostComments
-                    });
-                    navigate('/');  
-                }}
-                >Most comments</button>
-    
-                <button onClick={() => {
-                    setQuestions({
-                        type: QuestionsActionTypes.lessComments
-                    });
-                    navigate('/');
-                }}
-                >Less comments</button> 
+                        setQuestions({
+                            type: QuestionsActionTypes.mostComments
+                        });
+                        navigate('/');  
+                    }}
+                    >Most comments</button>
+        
+                    <button onClick={() => {
+                        setQuestions({
+                            type: QuestionsActionTypes.lessComments
+                        });
+                        navigate('/');
+                    }}
+                    >Less comments</button> 
                 </div>
             )}
             
