@@ -10,13 +10,12 @@ import * as Yup from 'yup';
 import { v4 as uuid } from 'uuid';
 
 const StyledSection = styled.section`
-    >button{
+    button{
         border: none;
         background-color: transparent;
-        margin: 20px;
-        font-size: 20px;
-        >a >i{
-            color: black;
+        >i:hover{
+            text-decoration: underline;
+            color: #e276fd;
         }
     }
     >div{
@@ -36,18 +35,11 @@ const StyledSection = styled.section`
         >div:nth-child(1){
             display: flex;
             justify-content: space-between;
-            >button{
-                border: none;
-                background-color: transparent;
-                >i:hover{
-                    text-decoration: underline;
-                    color: #e276fd;
-                }
-            }
         }
         >div:nth-child(2){
             display: flex;
             flex-direction: column;
+            
         }
         >form{
             display: flex;
@@ -112,11 +104,23 @@ const OneQuestionPage = () => {
             questions.length &&
             <div>
                 <div>
-                {
-                    loginUser.id === question.userId && 
-                    <button onClick={() => 
-                        navigate(`/${question.id}/edit`)}><i className="bi bi-pencil"></i></button>
-                }
+                    <div>
+                    {
+                        loginUser.id === question.userId && 
+                        <button onClick={() => 
+                            navigate(`/${question.id}/edit`)}
+                            ><i className="bi bi-pencil"></i></button>
+                    }
+                    {
+                        questions.map(question => (
+                            <div key={question.id}>
+                                {question.editedAt && (
+                                    <p>Edited: {new Date(question.editedAt).toLocaleString()}</p>
+                                )}
+                            </div>
+                        ))
+                    }
+                    </div>
                 {
                     loginUser.id === question.userId && 
                     <button onClick={() => {
@@ -130,6 +134,7 @@ const OneQuestionPage = () => {
                 </div>
                 <h4>{question.topic}</h4>
                 <h2>{question.question}</h2>
+                
                 <div>
                     {
                         question.comments?.map(comment => 

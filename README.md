@@ -18,13 +18,19 @@ You may also see any lint errors in the console.
 Open [http://localhost:8080](http://localhost:8080) to view it in your browser.
 
 ### `npm styled-components`
+install styled components
 
 ### `npm uuid`
+instal uuid
 
 ### `npm react-router-dom`
+install react-router-dom
 
 ### `npm yup`
+install yup
 
 ### `npm formik`
+install formik
 
 ### `bcryptjs`
+install bcryptjs
