@@ -3,7 +3,7 @@ import { useContext } from "react";
 import QuestionsContext from "../../contexts/QuestionsContext";
 import UsersContext from "../../contexts/UsersContext";
 import { QuestionsActionTypes } from "../../contexts/QuestionsContext";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const StyledDiv = styled.div`
     border: 1px solid #ab5fc0;
@@ -35,7 +35,6 @@ const OneQuestion = ({data, location}) => {
 
     const { setQuestions } = useContext(QuestionsContext);
     const { loginUser } = useContext(UsersContext);
-    const navigate = useNavigate();
 
     return ( 
         <StyledDiv>

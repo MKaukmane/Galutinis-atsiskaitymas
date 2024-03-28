@@ -40,7 +40,7 @@ const StyledSection = styled.section`
 
 const Home = () => {
 
-    const {questions, setQuestions} = useContext(QuestionsContext);
+    const {questions, setQuestions, refetch} = useContext(QuestionsContext);
     const location = useLocation();
     const navigate = useNavigate();
     const [showButtons, setShowButtons] = useState(false);
@@ -48,7 +48,8 @@ const Home = () => {
     return ( 
         <StyledSection>
             <h1>All questions</h1>
-            <button onClick={() => {
+            <button onClick={async () => {
+                await refetch();
                 setQuestions({
                     type: QuestionsActionTypes.noComment
                 });
@@ -56,7 +57,8 @@ const Home = () => {
                 setShowButtons(false);
             }}>No comment</button>
 
-            <button onClick={() => {    
+            <button onClick={async () => {  
+                await refetch();  
                 setQuestions({
                     type: QuestionsActionTypes.withComment
                 });
@@ -68,7 +70,8 @@ const Home = () => {
             {
                 showButtons && (
                 <div>
-                    <button onClick={() => {
+                    <button onClick={async () => {
+                        await refetch();
                         setQuestions({
                             type: QuestionsActionTypes.mostComments
                         });
@@ -76,7 +79,8 @@ const Home = () => {
                     }}
                     >Most comments</button>
         
-                    <button onClick={() => {
+                    <button onClick={async () => {
+                        await refetch();
                         setQuestions({
                             type: QuestionsActionTypes.lessComments
                         });

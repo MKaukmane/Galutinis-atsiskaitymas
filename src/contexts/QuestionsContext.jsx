@@ -134,6 +134,19 @@ const reducer = (state, action) => {
                     body: JSON.stringify(likedQuestion)
                 });
                 return state.map(item => item.id === action.id ? likedQuestion : item);
+            } else {
+                const likedQuestion = {
+                    ...questionToLike,
+                    likes: questionToLike.likes.filter((userId) => userId !== questionToLike.userId)
+                };
+                fetch(`http://localhost:8080/questions/${action.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(likedQuestion)
+                });
+                return state.map(item => item.id === action.id ? likedQuestion : item);
             }
             return state;
 
@@ -152,18 +165,31 @@ const reducer = (state, action) => {
                     body: JSON.stringify(dislikedQuestion)
                 });
                 return state.map(item => item.id === action.id ? dislikedQuestion : item);
+            } else {
+                const dislikedQuestion = {
+                    ...questionToDislike,
+                    dislikes: questionToDislike.likes.filter((userId) => userId !== questionToDislike.userId)
+                };
+                fetch(`http://localhost:8080/questions/${action.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dislikedQuestion)
+                });
+                return state.map(item => item.id === action.id ? dislikedQuestion : item);
             }
             return state;
 
         case QuestionsActionTypes.mostComments:
-            return state.sort((a, b) => b.comments.length - a.comments.length);
+            return state?.sort((a, b) => b.comments.length - a.comments.length);
         case QuestionsActionTypes.lessComments:
-            return state.sort((a, b) => a.comments.length - b.comments.length);
+            return state?.sort((a, b) => a.comments.length - b.comments.length);
 
         case QuestionsActionTypes.noComment:
-            return state.filter(item => item.comments.length === 0);
+            return state?.filter(item => item.comments.length === 0);
         case QuestionsActionTypes.withComment:
-            return state.filter(item => item.comments.length > 0);
+            return state?.filter(item => item.comments.length > 0);
             
         default:
             console.error(`Action type not found ${action.type}`);
@@ -174,21 +200,26 @@ const reducer = (state, action) => {
 const QuestionsProvider = ({children}) => {
          
         const [questions, setQuestions] = useReducer(reducer, []);
+
+        const refetch = async () => {
+            await fetch('http://localhost:8080/questions')
+            .then(response => response.json())
+            .then(data => setQuestions({
+                type: QuestionsActionTypes.getAll,
+                data: data
+            }))
+        }
     
         useEffect(() => {
-            fetch('http://localhost:8080/questions')
-                .then(response => response.json())
-                .then(data => setQuestions({
-                    type: QuestionsActionTypes.getAll,
-                    data: data
-                }))
+            refetch();
         }, []);
     
         return (
             <QuestionsContext.Provider 
             value={{
                 questions, 
-                setQuestions
+                setQuestions,
+                refetch
             }}>
                 {children}
             </QuestionsContext.Provider>
