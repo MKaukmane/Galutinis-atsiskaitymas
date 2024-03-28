@@ -148,7 +148,6 @@ const reducer = (state, action) => {
                 });
                 return state.map(item => item.id === action.id ? likedQuestion : item);
             }
-            return state;
 
         case QuestionsActionTypes.dislikeQuestion:
             const questionToDislike = state.find(item => item.id === action.id);
@@ -179,7 +178,6 @@ const reducer = (state, action) => {
                 });
                 return state.map(item => item.id === action.id ? dislikedQuestion : item);
             }
-            return state;
 
         case QuestionsActionTypes.mostComments:
             return state?.sort((a, b) => b.comments.length - a.comments.length);
